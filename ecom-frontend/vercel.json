@@ -1,0 +1,13 @@
+{
+  "buildCommand": "remix build",
+  "devCommand": "remix dev",
+  "framework": "remix",
+  "installCommand": "npm install",
+  "outputDirectory": "public",
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/$1"
+    }
+  ]
+}
