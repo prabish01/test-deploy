@@ -1,0 +1,1 @@
+import{a as d}from"/build/_shared/chunk-MTQ3NDKQ.js";import{d as g}from"/build/_shared/chunk-2QEWK57A.js";var n=g(d(),1),i=(c=!1)=>{let[t,o]=(0,n.useState)(c),s=()=>{o(!1)},a=()=>{o(!0)},l=()=>{o(p=>!p)},e=[t,a,s,l];return e.state=t,e.open=a,e.close=s,e.toggle=l,e},r=i;export{r as a};

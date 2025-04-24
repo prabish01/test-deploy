@@ -1,0 +1,1 @@
+function n(r){let t=r instanceof FormData?Object.fromEntries(r.entries()):r;return!!(t.streetLine1&&t.city&&t.countryCode&&t.postalCode)}function e(r){return!r||r.trim().length==0?"-":r}export{n as a,e as b};
