@@ -71,15 +71,21 @@ const buildConfig = {
 };
 
 function selectConfig() {
-  if (!['development', 'production'].includes(process.env.NODE_ENV))
-    throw new Error(`Unknown NODE_ENV: ${process.env.NODE_ENV}`);
+  // Check for Vercel first, since NODE_ENV might be undefined
+  if (process.env.VERCEL) return vercelConfig;
   if (process.env.CF_PAGES) return cloudflarePagesConfig;
   if (process.env.NETLIFY) return netlifyConfig;
-  if (process.env.VERCEL) return vercelConfig;
-  if (process.env.NODE_ENV === 'development') return devConfig;
-  if (!process.env.CF_PAGES && !process.env.NETLIFY && !process.env.VERCEL)
-    return buildConfig;
-  throw new Error(`Cannot select config`);
+
+  // Default to production if NODE_ENV is undefined
+  const nodeEnv = process.env.NODE_ENV || 'production';
+
+  if (nodeEnv === 'development') return devConfig;
+  if (nodeEnv === 'production') {
+    if (!process.env.CF_PAGES && !process.env.NETLIFY && !process.env.VERCEL)
+      return buildConfig;
+  }
+
+  return buildConfig;
 }
 
 export default selectConfig();
